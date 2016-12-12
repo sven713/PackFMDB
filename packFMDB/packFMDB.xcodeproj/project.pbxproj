@@ -23,6 +23,9 @@
 		0BFFAFCC1DFE510400DD5EE9 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFFAFC61DFE510400DD5EE9 /* FMResultSet.m */; };
 		0BFFAFCD1DFE510400DD5EE9 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0BFFAFC71DFE510400DD5EE9 /* Info.plist */; };
 		0BFFAFD31DFE514800DD5EE9 /* FMDBHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFFAFD21DFE514800DD5EE9 /* FMDBHelp.m */; };
+		0BFFAFD71DFE83CD00DD5EE9 /* AddPersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFFAFD61DFE83CD00DD5EE9 /* AddPersonViewController.m */; };
+		0BFFAFDB1DFE8CDB00DD5EE9 /* People.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFFAFDA1DFE8CDB00DD5EE9 /* People.m */; };
+		0BFFAFDF1DFE8F9000DD5EE9 /* PersonCarDataBaseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFFAFDE1DFE8F9000DD5EE9 /* PersonCarDataBaseHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +77,12 @@
 		0BFFAFC71DFE510400DD5EE9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0BFFAFD11DFE514800DD5EE9 /* FMDBHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDBHelp.h; sourceTree = "<group>"; };
 		0BFFAFD21DFE514800DD5EE9 /* FMDBHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDBHelp.m; sourceTree = "<group>"; };
+		0BFFAFD51DFE83CD00DD5EE9 /* AddPersonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPersonViewController.h; sourceTree = "<group>"; };
+		0BFFAFD61DFE83CD00DD5EE9 /* AddPersonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPersonViewController.m; sourceTree = "<group>"; };
+		0BFFAFD91DFE8CDB00DD5EE9 /* People.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = People.h; sourceTree = "<group>"; };
+		0BFFAFDA1DFE8CDB00DD5EE9 /* People.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = People.m; sourceTree = "<group>"; };
+		0BFFAFDD1DFE8F9000DD5EE9 /* PersonCarDataBaseHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonCarDataBaseHelper.h; sourceTree = "<group>"; };
+		0BFFAFDE1DFE8F9000DD5EE9 /* PersonCarDataBaseHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonCarDataBaseHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +135,7 @@
 		0BFFAF831DFE497B00DD5EE9 /* packFMDB */ = {
 			isa = PBXGroup;
 			children = (
+				0BFFAFD41DFE833E00DD5EE9 /* Class */,
 				0BFFAFBA1DFE510400DD5EE9 /* 3rdFramework */,
 				0BFFAF871DFE497B00DD5EE9 /* AppDelegate.h */,
 				0BFFAF881DFE497B00DD5EE9 /* AppDelegate.m */,
@@ -201,6 +211,35 @@
 				0BFFAFC71DFE510400DD5EE9 /* Info.plist */,
 			);
 			path = fmdb;
+			sourceTree = "<group>";
+		};
+		0BFFAFD41DFE833E00DD5EE9 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				0BFFAFDC1DFE8F6600DD5EE9 /* Class */,
+				0BFFAFD81DFE8CCA00DD5EE9 /* Model */,
+				0BFFAFD51DFE83CD00DD5EE9 /* AddPersonViewController.h */,
+				0BFFAFD61DFE83CD00DD5EE9 /* AddPersonViewController.m */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
+		0BFFAFD81DFE8CCA00DD5EE9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0BFFAFD91DFE8CDB00DD5EE9 /* People.h */,
+				0BFFAFDA1DFE8CDB00DD5EE9 /* People.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0BFFAFDC1DFE8F6600DD5EE9 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				0BFFAFDD1DFE8F9000DD5EE9 /* PersonCarDataBaseHelper.h */,
+				0BFFAFDE1DFE8F9000DD5EE9 /* PersonCarDataBaseHelper.m */,
+			);
+			path = Class;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,10 +381,13 @@
 				0BFFAFCA1DFE510400DD5EE9 /* FMDatabasePool.m in Sources */,
 				0BFFAF891DFE497B00DD5EE9 /* AppDelegate.m in Sources */,
 				0BFFAFCB1DFE510400DD5EE9 /* FMDatabaseQueue.m in Sources */,
+				0BFFAFDB1DFE8CDB00DD5EE9 /* People.m in Sources */,
+				0BFFAFDF1DFE8F9000DD5EE9 /* PersonCarDataBaseHelper.m in Sources */,
 				0BFFAF861DFE497B00DD5EE9 /* main.m in Sources */,
 				0BFFAFC81DFE510400DD5EE9 /* FMDatabase.m in Sources */,
 				0BFFAFCC1DFE510400DD5EE9 /* FMResultSet.m in Sources */,
 				0BFFAFC91DFE510400DD5EE9 /* FMDatabaseAdditions.m in Sources */,
+				0BFFAFD71DFE83CD00DD5EE9 /* AddPersonViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
