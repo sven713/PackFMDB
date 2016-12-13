@@ -31,7 +31,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     // 添加两个按钮
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"添加人名" style:UIBarButtonItemStylePlain target:self action:@selector(addPeopleName)];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"车库" style:UIBarButtonItemStyleDone target:self action:@selector(carPort)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"停车场" style:UIBarButtonItemStyleDone target:self action:@selector(carPort)];
     
     self.peopleArray = [[PersonCarDataBaseHelper shareInstance] getPersonArray];
     [self.tableView reloadData];
