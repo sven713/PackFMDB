@@ -99,8 +99,26 @@
 
 - (NSMutableArray *)getCarFromPerson:(People *)person {
     NSMutableArray *carArr = [NSMutableArray array];
+    // 打开数据库 查询得到数组 转成模型 直接执行不行,要传参数
     
-    return nil;
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM car WHERE own_id = %@",person.ID];
+    
+    NSArray *carArrDict = [NSArray arrayWithArray:[[FMDBHelp shareInstance] queryWithSql:sql]];
+
+    for (NSDictionary *dict in carArrDict) {
+        Car *car = [[Car alloc]init];
+        car.brand = [dict objectForKey:@"car_brand"];
+        car.price = [[dict objectForKey:@"car_price"] integerValue];
+        car.own_id = person.ID;
+        [carArr addObject:car];
+    }
+    
+//    FMDatabase *db = [FMDBHelp shareInstance].dataBase;
+//    [db open];
+//    
+//    FMResultSet *set = [db executeQuery:@"SELECT * FROM car WHERE car_id = %"];
+    
+    return carArr;
 }
 
 - (void)initDataBase {

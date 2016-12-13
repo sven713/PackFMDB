@@ -27,6 +27,7 @@
 - (void)configUI {
     self.title = [NSString stringWithFormat:@"%@的车库",self.person.name];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"买车" style:UIBarButtonItemStylePlain target:self action:@selector(addCar)];
+    self.carArray = [[PersonCarDataBaseHelper shareInstance]getCarFromPerson:self.person];
 }
 
 - (void)addCar {
@@ -39,12 +40,16 @@
     
     // 数据库插入car
     [[PersonCarDataBaseHelper shareInstance] addCar:car toPerson:self.person];
+    
+    // 获取现在的数据,刷新Table
+    self.carArray = [[PersonCarDataBaseHelper shareInstance]getCarFromPerson:self.person];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return self.carArray.count;
 }
 
 
@@ -54,8 +59,8 @@
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
-    
-    cell.textLabel.text = [NSString stringWithFormat:@"%td",indexPath.row];
+    Car *car = self.carArray[indexPath.row];
+    cell.textLabel.text = car.brand;
     return cell;
 }
 
