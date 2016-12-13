@@ -9,6 +9,7 @@
 #import "PersonCarDataBaseHelper.h"
 #import "People.h"
 #import "FMDBHelp.h"
+#import "Car.h"
 
 @implementation PersonCarDataBaseHelper
 
@@ -60,6 +61,23 @@
     [[FMDBHelp shareInstance].dataBase close];
 }
 
+- (void)addCar:(Car *)car toPerson:(People *)person {
+    FMDatabase *db = [FMDBHelp shareInstance].dataBase;
+    [db open];
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM car WHERE own_id = %@",person.ID];
+    FMResultSet *resultSet = [db executeQuery:sql];
+    NSInteger maxID = 0;
+    if ([resultSet next]) {
+        if (maxID < [resultSet stringForColumn:@"car_id"].integerValue) {
+            maxID = [resultSet stringForColumn:@"car_id"].integerValue;
+        }
+    }
+    maxID = maxID + 1;
+//    NSNumber *max = [NSNumber numberWithInteger:maxID];
+    [db executeUpdate:@"INSERT INTO car(own_id,car_id,car_brand,car_price)VALUES(?,?,?,?)",person.ID,@(maxID),car.brand,@(car.price)];
+    [db close];
+}
+
 - (NSMutableArray *)getPersonArray {
 //    [FMDBHelp shareInstance] queryWithSql:<#(NSString *)#>;
 //    FMDatabase *db = [FMDBHelp shareInstance].dataBase;
@@ -79,6 +97,12 @@
     return resultArr;
 }
 
+- (NSMutableArray *)getCarFromPerson:(People *)person {
+    NSMutableArray *carArr = [NSMutableArray array];
+    
+    return nil;
+}
+
 - (void)initDataBase {
     [[FMDBHelp shareInstance] createDBWithName:@"dataBasedemo"];
     [[FMDBHelp shareInstance] queryWithSql:@"CREATE TABLE 'person' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL ,'person_id' VARCHAR(255),'person_name' VARCHAR(255),'person_age' VARCHAR(255)) "]; // person_number'VARCHAR(255)没加
@@ -92,8 +116,7 @@
     // 打开
     [[FMDBHelp shareInstance].dataBase open];
     // 执行
-//    [[FMDBHelp shareInstance].dataBase executeQuery:@"DELETE FROM person WHERE person_id = ?", person.ID];
-    [[FMDBHelp shareInstance].dataBase executeUpdate:@"DELETE FROM person WHERE person_id = ?", person.ID];
+    [[FMDBHelp shareInstance].dataBase executeUpdate:@"DELETE FROM person WHERE person_id = ?", person.ID]; // executeQuery不行
     // 关闭
     [[FMDBHelp shareInstance].dataBase close];
     
@@ -105,6 +128,9 @@
 //    
 //    [db close];
 }
+
+
+
 
 @end
 

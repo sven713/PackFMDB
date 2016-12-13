@@ -5,10 +5,12 @@
 //  Created by song ximing on 2016/12/12.
 //  Copyright © 2016年 song ximing. All rights reserved.
 //  http://www.jianshu.com/p/54e74ce87404#
+// http://www.jianshu.com/p/54e74ce87404
 
 #import "AddPersonViewController.h"
 #import "People.h"
 #import "PersonCarDataBaseHelper.h"
+#import "CarPortTableViewController.h"
 
 @interface AddPersonViewController ()
 @property (nonatomic, strong) NSMutableArray<People *> *peopleArray; //!<人数据源
@@ -73,7 +75,9 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    CarPortTableViewController *carPort = [[CarPortTableViewController alloc]init];
+    carPort.person = self.peopleArray[indexPath.row];
+    [self.navigationController pushViewController:carPort animated:YES];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -89,7 +93,7 @@
         [self.peopleArray removeAllObjects];
         self.peopleArray = [[PersonCarDataBaseHelper shareInstance]getPersonArray];
         // 刷新
-        [self.tableView reloadData];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     }else {
     
     }

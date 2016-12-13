@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B15F0D41DFFE5EE00102A8E /* CarPortTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B15F0D31DFFE5EE00102A8E /* CarPortTableViewController.m */; };
+		0B15F0D71DFFEDF500102A8E /* Car.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B15F0D61DFFEDF500102A8E /* Car.m */; };
 		0BFFAF861DFE497B00DD5EE9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFFAF851DFE497B00DD5EE9 /* main.m */; };
 		0BFFAF891DFE497B00DD5EE9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFFAF881DFE497B00DD5EE9 /* AppDelegate.m */; };
 		0BFFAF8C1DFE497B00DD5EE9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFFAF8B1DFE497B00DD5EE9 /* ViewController.m */; };
@@ -46,6 +48,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B15F0D21DFFE5EE00102A8E /* CarPortTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarPortTableViewController.h; sourceTree = "<group>"; };
+		0B15F0D31DFFE5EE00102A8E /* CarPortTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarPortTableViewController.m; sourceTree = "<group>"; };
+		0B15F0D51DFFEDF400102A8E /* Car.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Car.h; sourceTree = "<group>"; };
+		0B15F0D61DFFEDF500102A8E /* Car.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Car.m; sourceTree = "<group>"; };
 		0BFFAF811DFE497B00DD5EE9 /* packFMDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = packFMDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BFFAF851DFE497B00DD5EE9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0BFFAF871DFE497B00DD5EE9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -111,6 +117,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B15F0D11DFFE56A00102A8E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0B15F0D21DFFE5EE00102A8E /* CarPortTableViewController.h */,
+				0B15F0D31DFFE5EE00102A8E /* CarPortTableViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		0BFFAF781DFE497B00DD5EE9 = {
 			isa = PBXGroup;
 			children = (
@@ -216,6 +231,7 @@
 		0BFFAFD41DFE833E00DD5EE9 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				0B15F0D11DFFE56A00102A8E /* Controller */,
 				0BFFAFDC1DFE8F6600DD5EE9 /* Class */,
 				0BFFAFD81DFE8CCA00DD5EE9 /* Model */,
 				0BFFAFD51DFE83CD00DD5EE9 /* AddPersonViewController.h */,
@@ -229,6 +245,8 @@
 			children = (
 				0BFFAFD91DFE8CDB00DD5EE9 /* People.h */,
 				0BFFAFDA1DFE8CDB00DD5EE9 /* People.m */,
+				0B15F0D51DFFEDF400102A8E /* Car.h */,
+				0B15F0D61DFFEDF500102A8E /* Car.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -380,7 +398,9 @@
 				0BFFAF8C1DFE497B00DD5EE9 /* ViewController.m in Sources */,
 				0BFFAFCA1DFE510400DD5EE9 /* FMDatabasePool.m in Sources */,
 				0BFFAF891DFE497B00DD5EE9 /* AppDelegate.m in Sources */,
+				0B15F0D71DFFEDF500102A8E /* Car.m in Sources */,
 				0BFFAFCB1DFE510400DD5EE9 /* FMDatabaseQueue.m in Sources */,
+				0B15F0D41DFFE5EE00102A8E /* CarPortTableViewController.m in Sources */,
 				0BFFAFDB1DFE8CDB00DD5EE9 /* People.m in Sources */,
 				0BFFAFDF1DFE8F9000DD5EE9 /* PersonCarDataBaseHelper.m in Sources */,
 				0BFFAF861DFE497B00DD5EE9 /* main.m in Sources */,
@@ -619,6 +639,7 @@
 				0BFFAFB01DFE497C00DD5EE9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0BFFAFB11DFE497C00DD5EE9 /* Build configuration list for PBXNativeTarget "packFMDBTests" */ = {
 			isa = XCConfigurationList;
@@ -627,6 +648,7 @@
 				0BFFAFB31DFE497C00DD5EE9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0BFFAFB41DFE497C00DD5EE9 /* Build configuration list for PBXNativeTarget "packFMDBUITests" */ = {
 			isa = XCConfigurationList;
@@ -635,6 +657,7 @@
 				0BFFAFB61DFE497C00DD5EE9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
