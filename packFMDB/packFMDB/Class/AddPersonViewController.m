@@ -32,6 +32,9 @@
     // 添加两个按钮
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"添加人名" style:UIBarButtonItemStylePlain target:self action:@selector(addPeopleName)];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"车库" style:UIBarButtonItemStyleDone target:self action:@selector(carPort)];
+    
+    self.peopleArray = [[PersonCarDataBaseHelper shareInstance] getPersonArray];
+    [self.tableView reloadData];
 }
 
 #pragma mark - 点击事件
@@ -90,7 +93,7 @@
         People *person = self.peopleArray[indexPath.row];
         [[PersonCarDataBaseHelper shareInstance] deletePerson:person];
         // 获取全部数据赋值给数据源
-        [self.peopleArray removeAllObjects];
+//        [self.peopleArray removeAllObjects];
         self.peopleArray = [[PersonCarDataBaseHelper shareInstance]getPersonArray];
         // 刷新
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];

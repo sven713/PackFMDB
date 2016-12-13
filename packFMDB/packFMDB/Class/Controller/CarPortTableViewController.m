@@ -64,4 +64,35 @@
     return cell;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // 删除操作 从数据库删除一条数据
+//        People *person = self.peopleArray[indexPath.row];
+//        [[PersonCarDataBaseHelper shareInstance] deletePerson:person];
+        
+        Car *car = self.carArray[indexPath.row];
+        [[PersonCarDataBaseHelper shareInstance] deletCar:car owner:self.person];
+        
+        // 获取全部数据赋值给数据源
+//        [self.peopleArray removeAllObjects];
+//        self.peopleArray = [[PersonCarDataBaseHelper shareInstance]getPersonArray];
+        
+        self.carArray = [[PersonCarDataBaseHelper shareInstance] getCarFromPerson:self.person];
+        
+        // 刷新
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+//        [tableView reloadData];
+    }else {
+        
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return @"删除";
+}
+
 @end

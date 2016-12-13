@@ -61,20 +61,22 @@
     [[FMDBHelp shareInstance].dataBase close];
 }
 
+/**增加车*/
 - (void)addCar:(Car *)car toPerson:(People *)person {
     FMDatabase *db = [FMDBHelp shareInstance].dataBase;
     [db open];
     NSString *sql = [NSString stringWithFormat:@"SELECT * FROM car WHERE own_id = %@",person.ID];
     FMResultSet *resultSet = [db executeQuery:sql];
     NSInteger maxID = 0;
-    if ([resultSet next]) {
+    while ([resultSet next]) { // while 写成了 if 循环就走一次,造成carID是相同
         if (maxID < [resultSet stringForColumn:@"car_id"].integerValue) {
             maxID = [resultSet stringForColumn:@"car_id"].integerValue;
         }
     }
     maxID = maxID + 1;
 //    NSNumber *max = [NSNumber numberWithInteger:maxID];
-    [db executeUpdate:@"INSERT INTO car(own_id,car_id,car_brand,car_price)VALUES(?,?,?,?)",person.ID,@(maxID),car.brand,@(car.price)];
+    [db executeUpdate:@"INSERT INTO car(own_id,car_id,car_brand,car_price)VALUES(?,?,?,?)",person.ID,@(maxID),car.brand,@(car.price)]; // own_id == person_id car_id == maxID
+    // maxID递增,car_id也递增  car_id作用类似person_id
     [db close];
 }
 
@@ -110,6 +112,7 @@
         car.brand = [dict objectForKey:@"car_brand"];
         car.price = [[dict objectForKey:@"car_price"] integerValue];
         car.own_id = person.ID;
+        car.car_id = [dict objectForKey:@"car_id"]; // 取值
         [carArr addObject:car];
     }
     
@@ -147,7 +150,14 @@
 //    [db close];
 }
 
-
+- (void)deletCar:(Car *)car owner:(People *)person {
+    FMDatabase *db = [FMDBHelp shareInstance].dataBase;
+    [db open];
+    // 删除 person_id 两个条件
+    [db executeUpdate:@"DELETE FROM car WHERE own_id = ? and car_id = ?",person.ID,car.car_id]; // 应该用person_id??? delete没有* select有*
+    
+    [db close];
+}
 
 
 @end

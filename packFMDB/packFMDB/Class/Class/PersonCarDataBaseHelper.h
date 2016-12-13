@@ -38,6 +38,8 @@
 - (void)deletePerson:(People *)person;
 
 
+- (void)deletCar:(Car *)car owner:(People *)person;
+
 /**
  向某人添加小车
 
@@ -52,6 +54,7 @@
  @param person 谁的车
  */
 - (NSMutableArray *)getCarFromPerson:(People *)person;
+
 
 +(instancetype)shareInstance;
 @end
