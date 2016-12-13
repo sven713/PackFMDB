@@ -7,8 +7,14 @@
 //  http://www.jianshu.com/p/dd170b1cbc3b 参考
 
 #import <Foundation/Foundation.h>
+#import "FMDB.h"
 
+/**
+ 封装了FMDB的工具类
+ */
 @interface FMDBHelp : NSObject
+
+@property (nonatomic, strong) FMDatabase *dataBase; //!<数据库对象
 
 /**
  支持外界自定义数据库文件名
@@ -42,16 +48,15 @@
  */
 +(instancetype)shareInstance;
 
-///**
-// 是否打开数据库成功
-//
-// @return YES:打开成功 NO:打开失败
-// */
-//- (BOOL)openOrCreateDBSuccess;
+- (NSNumber *)getLastItemWithKey:(NSString *)key tableName:(NSString *)tableName;
 
+//- (void)insertTableName:(NSString *)tableName propertyKeyArray:(NSArray *)key value:(NSString *)values;
 
-///**
-// 关闭数据库
-// */
-//- (void)closeDB;
+/**
+ *@brief 插入一個實體
+ *@param entity -要插入的實體，含有結果值的實體，設置用
+ *@return 操作成功與否
+ */
+- (BOOL)insert:(id)entity tableName:(NSString *)tableName;
+
 @end

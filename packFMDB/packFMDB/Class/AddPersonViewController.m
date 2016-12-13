@@ -11,7 +11,7 @@
 #import "PersonCarDataBaseHelper.h"
 
 @interface AddPersonViewController ()
-@property (nonatomic, strong) NSMutableArray *peopleArray; //!<人数据源
+@property (nonatomic, strong) NSMutableArray<People *> *peopleArray; //!<人数据源
 @end
 
 @implementation AddPersonViewController
@@ -42,7 +42,7 @@
     [[PersonCarDataBaseHelper shareInstance]addPerson:people]; // 向数据库插入模型数据
     
     // 读取数据库文件,更新数据模型
-    
+    self.peopleArray = [[PersonCarDataBaseHelper shareInstance] getPersonArray];
     [self.tableView reloadData];
 }
 
@@ -52,13 +52,13 @@
 
 -(int)getRandomNumber:(int)from to:(int)to
 {
-    return (int)(from + (arc4random() % (to - from + 1)));
+    return (int)(from + (arc4random() % (to - from + 1))); // ??????
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return self.peopleArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -67,7 +67,8 @@
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AddPersonViewControllerCell"];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"%td",indexPath.row];
+    People *person = self.peopleArray[indexPath.row];
+    cell.textLabel.text = person.name;
     return cell;
 }
 

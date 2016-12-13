@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 @class People;
 
+
+/**
+ 人车数据库工具类
+ */
 @interface PersonCarDataBaseHelper : NSObject
 
 /**
