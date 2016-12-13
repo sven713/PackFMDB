@@ -73,6 +73,7 @@
         People *person = [[People alloc]init];
         person.name = [dict objectForKey:@"person_name"];
         person.age = [[dict objectForKey:@"person_age"] integerValue];
+        person.ID = [dict objectForKey:@"person_id"]; // person_id-->maxID-->person.ID
         [resultArr addObject:person];
     }
     return resultArr;
@@ -83,6 +84,26 @@
     [[FMDBHelp shareInstance] queryWithSql:@"CREATE TABLE 'person' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL ,'person_id' VARCHAR(255),'person_name' VARCHAR(255),'person_age' VARCHAR(255)) "]; // person_number'VARCHAR(255)没加
     [[FMDBHelp shareInstance] queryWithSql:@"CREATE TABLE 'car' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL ,'own_id' VARCHAR(255),'car_id' VARCHAR(255),'car_brand' VARCHAR(255),'car_price'VARCHAR(255)) "];
     NSLog(@"homeDictionaryPath-->-- %@",NSHomeDirectory());
+}
+
+- (void)deletePerson:(People *)person {
+//    NSString *sql = [NSString stringWithFormat:@"DELETE FROM person WHERE person_id = ?%@",person.ID];
+//    [[FMDBHelp shareInstance] queryWithSql:sql];
+    // 打开
+    [[FMDBHelp shareInstance].dataBase open];
+    // 执行
+//    [[FMDBHelp shareInstance].dataBase executeQuery:@"DELETE FROM person WHERE person_id = ?", person.ID];
+    [[FMDBHelp shareInstance].dataBase executeUpdate:@"DELETE FROM person WHERE person_id = ?", person.ID];
+    // 关闭
+    [[FMDBHelp shareInstance].dataBase close];
+    
+//    FMDatabase *db = [FMDBHelp shareInstance].dataBase;;
+//    
+//    [db open];
+//    
+//    [db executeUpdate:@"DELETE FROM person WHERE person_id = ?",person.ID];
+//    
+//    [db close];
 }
 
 @end

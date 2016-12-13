@@ -29,5 +29,8 @@
  @return 人物列表数组
  */
 - (NSMutableArray *)getPersonArray;
+
+- (void)deletePerson:(People *)person;
+
 +(instancetype)shareInstance;
 @end
