@@ -24,24 +24,10 @@
 }
 
 - (void)addPerson:(People *)people {
-//    NSNumber *insertPosition = [[FMDBHelp shareInstance] getLastItemWithKey:@"person_id" tableName:@"person"];
-//    insertPosition = @(insertPosition.integerValue + 1);
-//    NSString *sql = [NSString stringWithFormat:@"INSERT INTO person(person_id,person_name,person_age)VALUES(?,?,?) %@,%@,%@",@(insertPosition.integerValue),people.name,@(people.age)]; // 要获取最大id,然后往后面插,之前封装的squl没有这个方法,加一个方法呗
-//    
-//    [[FMDBHelp shareInstance] queryWithSql:sql]; // 插入数据
-    
-//    NSArray *prepertyKeyArray = @[@"person_id",@"person_name",@"person_age"];
-//    NSString *values = [NSString stringWithFormat:@"%@,%@,%@",insertPosition,people.name,@(people.age)];
-//    [[FMDBHelp shareInstance] insertTableName:@"person" propertyKeyArray:prepertyKeyArray value:values];
     
     //--------------------
 //    [[FMDBHelp shareInstance] insert:people tableName:@"person"]; // 参考HDF的封装
     //--------------------
-    
-//    [[FMDBHelp shareInstance].dataBase executeQuery:@"INSERT INTO person(person_id,person_name,person_age)VALUES(?,?,?)",insertPosition,people.name,@(people.age)];
-//    
-//    [[FMDBHelp shareInstance].dataBase close];
-    
     
     [[FMDBHelp shareInstance].dataBase open];
     
@@ -81,12 +67,6 @@
 }
 
 - (NSMutableArray *)getPersonArray {
-//    [FMDBHelp shareInstance] queryWithSql:<#(NSString *)#>;
-//    FMDatabase *db = [FMDBHelp shareInstance].dataBase;
-//    [db open]; // 打开数据库
-//    NSMutableArray *modelArr = [NSMutableArray array];
-//    FMResultSet
-
     NSArray *arr = [[FMDBHelp shareInstance] queryWithSql:@"SELECT * FROM person"];
     NSMutableArray *resultArr = [NSMutableArray array];
     for (NSDictionary *dict in arr) {
@@ -117,11 +97,6 @@
         [carArr addObject:car];
     }
     
-//    FMDatabase *db = [FMDBHelp shareInstance].dataBase;
-//    [db open];
-//    
-//    FMResultSet *set = [db executeQuery:@"SELECT * FROM car WHERE car_id = %"];
-    
     return carArr;
 }
 
@@ -142,13 +117,6 @@
     // 关闭
     [[FMDBHelp shareInstance].dataBase close];
     
-//    FMDatabase *db = [FMDBHelp shareInstance].dataBase;;
-//    
-//    [db open];
-//    
-//    [db executeUpdate:@"DELETE FROM person WHERE person_id = ?",person.ID];
-//    
-//    [db close];
 }
 
 - (void)deletCar:(Car *)car owner:(People *)person {
@@ -173,12 +141,8 @@
 - (NSMutableArray *)queryTwoTable {
     NSMutableArray *arrMu = [NSMutableArray array];
     
-//    FMDatabase *db = [FMDBHelp shareInstance].dataBase;
-//    [db open];
-//    
-//    [db close];
     NSString *sql = @"SELECT person.person_name,car.id,car.car_brand  FROM car,person where car.own_id = person.id  and person.id=1";
-    arrMu = [[FMDBHelp shareInstance]queryWithSql:sql];
+    arrMu = [[[FMDBHelp shareInstance]queryWithSql:sql] copy];
     return arrMu;
 }
 

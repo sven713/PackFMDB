@@ -135,16 +135,16 @@
     }
 }
 
-- (NSNumber *)getLastItemWithKey:(NSString *)key tableName:(NSString *)tableName{
-    NSNumber *maxID = @(0);
-    FMResultSet *restSet = [self.dataBase executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ ",tableName]];
-    while ([restSet next]) {
-        if ([maxID integerValue] < [[restSet stringForColumn:key] integerValue]) {
-            maxID = @([[restSet stringForColumn:key] integerValue]);
-        }
-    }
-    return maxID;
-}
+//- (NSNumber *)getLastItemWithKey:(NSString *)key tableName:(NSString *)tableName{
+//    NSNumber *maxID = @(0);
+//    FMResultSet *restSet = [self.dataBase executeQuery:[NSString stringWithFormat:@"SELECT * FROM %@ ",tableName]];
+//    while ([restSet next]) {
+//        if ([maxID integerValue] < [[restSet stringForColumn:key] integerValue]) {
+//            maxID = @([[restSet stringForColumn:key] integerValue]);
+//        }
+//    }
+//    return maxID;
+//}
 
 //- (void)insertTableName:(NSString *)tableName propertyKeyArray:(NSArray *)key value:(NSString *)values {
 //    NSMutableString *sqlcmd = [NSMutableString stringWithFormat:@"INSERT INTO %@ (%@) VALUES (%@);", tableName, [key componentsJoinedByString:@","], values];

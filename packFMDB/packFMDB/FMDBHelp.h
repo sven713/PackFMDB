@@ -42,18 +42,16 @@
 - (NSArray<NSDictionary *> *)queryWithSql:(NSString *)sql;
 
 /**
- 单例子
+ 单例
 
  @return FMDBHelper
  */
 +(instancetype)shareInstance;
 
-- (NSNumber *)getLastItemWithKey:(NSString *)key tableName:(NSString *)tableName;
-
 //- (void)insertTableName:(NSString *)tableName propertyKeyArray:(NSArray *)key value:(NSString *)values;
 
 /**
- *@brief 插入一個實體
+ *@brief 插入一個實體---参考HDF这个接口还不能用!!!!!
  *@param entity -要插入的實體，含有結果值的實體，設置用
  *@return 操作成功與否
  */

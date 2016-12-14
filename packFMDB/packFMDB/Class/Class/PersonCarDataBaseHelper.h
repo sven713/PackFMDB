@@ -22,7 +22,6 @@
  */
 - (void)addPerson:(People *)people;
 
-
 /**
  获取人物列表----查
 
@@ -36,7 +35,6 @@
  @param person 被删除的人物
  */
 - (void)deletePerson:(People *)person;
-
 
 /**
  删除某人的车---删
@@ -54,21 +52,24 @@
  */
 - (void)addCar:(Car *)car toPerson:(People *)person;
 
-
 /**
  查询某人拥有的车-----查
  @param person 谁的车
  */
 - (NSMutableArray *)getCarFromPerson:(People *)person;
 
-
 /**
- 修改person模型
+ 修改person模型--改
 
  @param people 被修改的person
  */
 - (void)updatePerson:(People *)people;
 
+/**
+ 两表关联查询----查
+
+ @return 查询结果数组
+ */
 - (NSMutableArray *)queryTwoTable;
 
 +(instancetype)shareInstance;
