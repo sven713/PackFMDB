@@ -13,6 +13,7 @@
 #import "CarPortTableViewController.h"
 #import "AllCarPortTableViewController.h"
 #import "PersonTableViewCell.h"
+#import "TwoTableQueryTableViewController.h"
 
 @interface AddPersonViewController ()
 @property (nonatomic, strong) NSMutableArray<People *> *peopleArray; //!<人数据源
@@ -37,6 +38,22 @@
     
     self.peopleArray = [[PersonCarDataBaseHelper shareInstance] getPersonArray];
     [self.tableView reloadData];
+    
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(50, 400, 300, 60)];
+    [button setTitle:@"car,person两表查询person_id = 1" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(queryTwoTable) forControlEvents:UIControlEventTouchUpInside];
+//    [button setTintColor:[UIColor orangeColor]];
+    button.backgroundColor = [UIColor orangeColor];
+//    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    [self.view addSubview:button];
+}
+
+- (void)queryTwoTable {
+    
+    NSMutableArray * arrM= [NSMutableArray arrayWithArray:[[PersonCarDataBaseHelper shareInstance]queryTwoTable]];
+    TwoTableQueryTableViewController *vc = [TwoTableQueryTableViewController new];
+    vc.arrayDict = arrM;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - 点击事件
@@ -79,12 +96,7 @@
     }
     
     People *person = self.peopleArray[indexPath.row];
-//    [cell.btn addTarget:self action:@selector(editeAlertWithModel:) forControlEvents:UIControlEventTouchUpInside];
-//    __weak typeof self(weakSelf) = self;
     __weak typeof(self)weakSelf = self;
-//    cell.btnClickBlock = ^(People *people){
-//        [weakSelf editeAlertWithModel:people];
-//    };
     cell.btnClickBlock = ^(){
         [weakSelf editeAlertWithModel:person];
     };

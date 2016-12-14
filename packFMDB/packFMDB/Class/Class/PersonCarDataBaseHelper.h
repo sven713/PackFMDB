@@ -62,7 +62,14 @@
 - (NSMutableArray *)getCarFromPerson:(People *)person;
 
 
+/**
+ 修改person模型
+
+ @param people 被修改的person
+ */
 - (void)updatePerson:(People *)people;
+
+- (NSMutableArray *)queryTwoTable;
 
 +(instancetype)shareInstance;
 @end

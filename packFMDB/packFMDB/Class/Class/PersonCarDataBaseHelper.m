@@ -169,5 +169,18 @@
     [db executeUpdate:@"UPDATE 'person' SET person_age = ? WHERE person_id = ?", @(people.age),people.ID];
     [db close];
 }
+
+- (NSMutableArray *)queryTwoTable {
+    NSMutableArray *arrMu = [NSMutableArray array];
+    
+//    FMDatabase *db = [FMDBHelp shareInstance].dataBase;
+//    [db open];
+//    
+//    [db close];
+    NSString *sql = @"SELECT person.person_name,car.id,car.car_brand  FROM car,person where car.own_id = person.id  and person.id=1";
+    arrMu = [[FMDBHelp shareInstance]queryWithSql:sql];
+    return arrMu;
+}
+
 @end
 
