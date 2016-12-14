@@ -12,4 +12,5 @@
 @property (nonatomic, copy) NSString *ID; //!<删除要用到 跟car的 own_id关联
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, assign) NSInteger age;
+@property (nonatomic, assign) NSInteger updateTime; //!<第几次更新
 @end

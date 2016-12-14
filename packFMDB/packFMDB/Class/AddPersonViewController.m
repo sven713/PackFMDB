@@ -11,6 +11,8 @@
 #import "People.h"
 #import "PersonCarDataBaseHelper.h"
 #import "CarPortTableViewController.h"
+#import "AllCarPortTableViewController.h"
+#import "PersonTableViewCell.h"
 
 @interface AddPersonViewController ()
 @property (nonatomic, strong) NSMutableArray<People *> *peopleArray; //!<人数据源
@@ -52,7 +54,9 @@
 }
 
 - (void)carPort {
+    AllCarPortTableViewController *vc = [AllCarPortTableViewController new];
     
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(int)getRandomNumber:(int)from to:(int)to
@@ -66,15 +70,37 @@
     return self.peopleArray.count;
 }
 
+//static UIButton *btn;
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddPersonViewControllerCell"];
-    
+    PersonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddPersonViewControllerCell"];
     if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"AddPersonViewControllerCell"];
+        cell = [[PersonTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"AddPersonViewControllerCell"];
     }
+    
     People *person = self.peopleArray[indexPath.row];
+//    [cell.btn addTarget:self action:@selector(editeAlertWithModel:) forControlEvents:UIControlEventTouchUpInside];
+//    __weak typeof self(weakSelf) = self;
+    __weak typeof(self)weakSelf = self;
+//    cell.btnClickBlock = ^(People *people){
+//        [weakSelf editeAlertWithModel:people];
+//    };
+    cell.btnClickBlock = ^(){
+        [weakSelf editeAlertWithModel:person];
+    };
     cell.textLabel.text = person.name;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"年龄:%td",person.age];
+    if (person.updateTime > 0) {
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"第%td次更新,年龄:%td",person.updateTime,person.age];
+    }
     return cell;
+}
+
+- (void)editeAlertWithModel:(People *)person {
+    person.age = arc4random_uniform(100);
+    [[PersonCarDataBaseHelper shareInstance] updatePerson:person];
+    self.peopleArray = [[PersonCarDataBaseHelper shareInstance] getPersonArray];
+    [self.tableView reloadData];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

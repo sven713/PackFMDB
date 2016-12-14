@@ -56,7 +56,7 @@
     }
     maxID = @([maxID integerValue] + 1);
     
-    [[FMDBHelp shareInstance].dataBase executeUpdate:@"INSERT INTO person(person_id,person_name,person_age)VALUES(?,?,?)",maxID,people.name,@(people.age)];
+    [[FMDBHelp shareInstance].dataBase executeUpdate:@"INSERT INTO person(person_id,person_name,person_age,person_updateTime)VALUES(?,?,?,?)",maxID,people.name,@(people.age),@(0)];
     
     [[FMDBHelp shareInstance].dataBase close];
 }
@@ -94,6 +94,7 @@
         person.name = [dict objectForKey:@"person_name"];
         person.age = [[dict objectForKey:@"person_age"] integerValue];
         person.ID = [dict objectForKey:@"person_id"]; // person_id-->maxID-->person.ID
+        person.updateTime = [[dict objectForKey:@"person_updateTime"] integerValue];
         [resultArr addObject:person];
     }
     return resultArr;
@@ -126,7 +127,7 @@
 
 - (void)initDataBase {
     [[FMDBHelp shareInstance] createDBWithName:@"dataBasedemo"];
-    [[FMDBHelp shareInstance] queryWithSql:@"CREATE TABLE 'person' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL ,'person_id' VARCHAR(255),'person_name' VARCHAR(255),'person_age' VARCHAR(255)) "]; // person_number'VARCHAR(255)没加
+    [[FMDBHelp shareInstance] queryWithSql:@"CREATE TABLE 'person' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL ,'person_id' VARCHAR(255),'person_name' VARCHAR(255),'person_age' VARCHAR(255),'person_updateTime' VARCHAR(255)) "]; // person_number'VARCHAR(255)没加
     [[FMDBHelp shareInstance] queryWithSql:@"CREATE TABLE 'car' ('id' INTEGER PRIMARY KEY AUTOINCREMENT  NOT NULL ,'own_id' VARCHAR(255),'car_id' VARCHAR(255),'car_brand' VARCHAR(255),'car_price'VARCHAR(255)) "];
     NSLog(@"homeDictionaryPath-->-- %@",NSHomeDirectory());
 }
@@ -159,6 +160,14 @@
     [db close];
 }
 
-
+- (void)updatePerson:(People *)people {
+    FMDatabase *db = [FMDBHelp shareInstance].dataBase;
+    [db open];
+    NSNumber *updateNum = @(people.updateTime + 1);
+    [db executeUpdate:@"UPDATE 'person' SET person_updateTime = ? WHERE person_id = ?", updateNum, people.ID]; // sql语句后面的参数 可以传什么类型的
+//    [db executeUpdate:@"UPDATE 'person' SEL person_name = ? WHERE person_id = ?",people.name, people.ID]; // 全部要更新么?只更新一条行么?
+    [db executeUpdate:@"UPDATE 'person' SET person_age = ? WHERE person_id = ?", @(people.age),people.ID];
+    [db close];
+}
 @end
 

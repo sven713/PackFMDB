@@ -10,6 +10,7 @@
 		0B15F0D41DFFE5EE00102A8E /* CarPortTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B15F0D31DFFE5EE00102A8E /* CarPortTableViewController.m */; };
 		0B15F0D71DFFEDF500102A8E /* Car.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B15F0D61DFFEDF500102A8E /* Car.m */; };
 		0B15F0DA1E00270700102A8E /* AllCarPortTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B15F0D91E00270700102A8E /* AllCarPortTableViewController.m */; };
+		0BC1040C1E01233300E3877B /* PersonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1040B1E01233300E3877B /* PersonTableViewCell.m */; };
 		0BFFAF861DFE497B00DD5EE9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFFAF851DFE497B00DD5EE9 /* main.m */; };
 		0BFFAF891DFE497B00DD5EE9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFFAF881DFE497B00DD5EE9 /* AppDelegate.m */; };
 		0BFFAF8C1DFE497B00DD5EE9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFFAF8B1DFE497B00DD5EE9 /* ViewController.m */; };
@@ -55,6 +56,8 @@
 		0B15F0D61DFFEDF500102A8E /* Car.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Car.m; sourceTree = "<group>"; };
 		0B15F0D81E00270700102A8E /* AllCarPortTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllCarPortTableViewController.h; sourceTree = "<group>"; };
 		0B15F0D91E00270700102A8E /* AllCarPortTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllCarPortTableViewController.m; sourceTree = "<group>"; };
+		0BC1040A1E01233300E3877B /* PersonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonTableViewCell.h; sourceTree = "<group>"; };
+		0BC1040B1E01233300E3877B /* PersonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonTableViewCell.m; sourceTree = "<group>"; };
 		0BFFAF811DFE497B00DD5EE9 /* packFMDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = packFMDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BFFAF851DFE497B00DD5EE9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0BFFAF871DFE497B00DD5EE9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -129,6 +132,15 @@
 				0B15F0D91E00270700102A8E /* AllCarPortTableViewController.m */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		0BC104091E01230D00E3877B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0BC1040A1E01233300E3877B /* PersonTableViewCell.h */,
+				0BC1040B1E01233300E3877B /* PersonTableViewCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		0BFFAF781DFE497B00DD5EE9 = {
@@ -236,6 +248,7 @@
 		0BFFAFD41DFE833E00DD5EE9 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				0BC104091E01230D00E3877B /* View */,
 				0B15F0D11DFFE56A00102A8E /* Controller */,
 				0BFFAFDC1DFE8F6600DD5EE9 /* Class */,
 				0BFFAFD81DFE8CCA00DD5EE9 /* Model */,
@@ -409,6 +422,7 @@
 				0B15F0D41DFFE5EE00102A8E /* CarPortTableViewController.m in Sources */,
 				0BFFAFDB1DFE8CDB00DD5EE9 /* People.m in Sources */,
 				0BFFAFDF1DFE8F9000DD5EE9 /* PersonCarDataBaseHelper.m in Sources */,
+				0BC1040C1E01233300E3877B /* PersonTableViewCell.m in Sources */,
 				0BFFAF861DFE497B00DD5EE9 /* main.m in Sources */,
 				0BFFAFC81DFE510400DD5EE9 /* FMDatabase.m in Sources */,
 				0BFFAFCC1DFE510400DD5EE9 /* FMResultSet.m in Sources */,
